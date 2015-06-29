@@ -13,7 +13,8 @@ function Teleport_Unit(trigger)
     -- Teleport the unit
     FindClearSpaceForUnit(trigger.activator, point, false)
     -- Stop the unit or else, it might move around after being teleported.
-    trigger.activator:Stop()    
+    trigger.activator:Stop()
+    PlayerResource:IncrementAssists(trigger.activator:GetPlayerID())
 --[[
     print (trigger.caller:GetName())
     print ("Teleported!")
