@@ -18,6 +18,8 @@ require('libraries/physics')
 require('libraries/projectiles')
 -- This library can be used for sending panorama notifications to the UIs of players/teams/everyone
 require('libraries/notifications')
+-- This library can be used for starting customized animations on units from lua
+require('libraries/animations')
 
 -- These internal libraries set up barebones's events and processes.  Feel free to inspect them/change them if you need to.
 require('internal/gamemode')
@@ -27,7 +29,7 @@ require('internal/events')
 require('settings')
 -- events.lua is where you can specify the actions to be taken when any event occurs and is one of the core barebones files.
 require('events')
-
+require('completelap')
 
 --[[
   This function should be used to set up Async precache calls at the beginning of the gameplay.
@@ -83,8 +85,8 @@ function GameMode:OnHeroInGame(hero)
   hero:SetGold(500, false)
 
   -- These lines will create an item and add it to the player, effectively ensuring they start with the item
-  local item = CreateItem("item_example_item", hero, hero)
-  hero:AddItem(item)
+  --local item = CreateItem("item_example_item", hero, hero)
+  --hero:AddItem(item)
 
   --[[ --These lines if uncommented will replace the W ability of any hero that loads into the game
     --with the "example_ability" ability
@@ -92,6 +94,12 @@ function GameMode:OnHeroInGame(hero)
   local abil = hero:GetAbilityByIndex(1)
   hero:RemoveAbility(abil:GetAbilityName())
   hero:AddAbility("example_ability")]]
+  if hero:GetUnitName() == "npc_dota_hero_lion" then
+    local ability_1 = hero:FindAbilityByName("jungle_Hero_Kill")
+    ability_1:SetLevel(1)
+    local ability_2 = hero:FindAbilityByName("jungle_invincibility_hero")
+    ability_2:SetLevel(1)
+  end
 end
 
 --[[
@@ -102,11 +110,26 @@ end
 function GameMode:OnGameInProgress()
   DebugPrint("[BAREBONES] The game has officially begun")
 
-  Timers:CreateTimer(30, -- Start this timer 30 game-time seconds later
+  --[[Timers:CreateTimer(30, -- Start this timer 30 game-time seconds later
     function()
       DebugPrint("This function is called 30 seconds after the game begins, and every 30 seconds thereafter")
       return 30.0 -- Rerun this timer every 30 game-time seconds 
-    end)
+    end)]]
+
+  local spawner_1 = Entities:FindByName ( nil, "spawner_1")
+  local maxNumPlayers = 10 
+  for nPlayerID = 0, maxNumPlayers-1 do
+  
+    if PlayerResource:GetPlayer(nPlayerID) ~= nil then
+      --local name = chooseRandUnit("")
+      local creature = CreateUnitByName("npc_dota_neutral_alpha_wolf" , spawner_1:GetAbsOrigin() + RandomVector( RandomFloat( 0, 200 ) ), true, PlayerResource:GetPlayer(nPlayerID), PlayerResource:GetPlayer(nPlayerID), nPlayerID)
+      creature:SetControllableByPlayer(nPlayerID, true)
+      print(nPlayerID)
+      local abilityString = "jungle_player" .. nPlayerID
+      creature:AddAbility(abilityString)
+      creature:FindAbilityByName(abilityString):SetLevel(1)
+    end
+  end
 end
 
 

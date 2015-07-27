@@ -2,6 +2,7 @@
 
 require('internal/util')
 require('gamemode')
+require('completelap')
 
 function Precache( context )
 --[[

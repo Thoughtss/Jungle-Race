@@ -218,59 +218,463 @@
     "AbilityTextureName"            "rubick_empty1"
   }
   
-  "barebones_empty2"
+  "jungle_Hero_Kill"
   {
     // General
     //-------------------------------------------------------------------------------------------------------------
-    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "BaseClass"           "lion_finger_of_death"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_BOTH"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
+    "MaxLevel"            "1"
+    // Casting
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCastRange"        "5000"
+    "AbilityCastPoint"        "0.01"
+
+    // Time   
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       ".5"
+
+    // Cost
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityManaCost"       "100"
+    
+    // Special  
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "damage"          "100000"
+      }
+      
+      
+      "02"
+      {
+        "var_type"          "FIELD_FLOAT"
+        "damage_delay"        "0.01"
+      }
+      
+    }
+  }
+
+  "jungle_invincibility_hero"
+  {
+    "BaseClass"           "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    
+    "Maxlevel"            "1"
+    "Modifiers"
+    {
+      "jungle_invincible"
+      {
+        "Passive"       "1"
+
+        "States"
+        {
+          "MODIFIER_STATE_INVULNERABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_NOT_ON_MINIMAP"       "MODIFIER_STATE_VALUE_ENABLED"
+          //"MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+    }
+  }
+
+  "jungle_empty3"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
     "MaxLevel"            "0"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"            "rubick_empty1"
+    "AbilityTextureName"            "tiny_craggy_exterior"
   }
   
-  "barebones_empty3"
+  "jungle_empty4"
   {
     // General
     //-------------------------------------------------------------------------------------------------------------
-    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
     "MaxLevel"            "0"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"            "rubick_empty1"
+    "AbilityTextureName"            "tiny_craggy_exterior"
+  }
+
+
+  "jungle_player0"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE| DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"            "30"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "tiny_craggy_exterior"
+    
+    "Modifiers"
+    {     
+      "modifier_make_deniable"
+      {
+        "Passive"               "1"
+        "Hidden"               "1"
+        "States"
+        {
+          "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+      "fx_test_modifier"
+      {
+        "Passive" "1"
+        "OnCreated"
+        {
+          "AttachEffect"
+          {
+            "Target" "TARGET"
+            "EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+            "EffectAttachType" "follow_overhead"
+            "EffectLifeDurationScale" "3"
+            "EffectColorA" "0 0 255" //BLUE
+          }
+        }
+      }
+    }
+  }
+  "jungle_player1"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE| DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"            "30"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "tiny_craggy_exterior"
+    "Modifiers"
+    {     
+      "modifier_make_deniable"
+      {
+        "Passive"               "1"
+        "Hidden"               "1"
+        "States"
+        {
+          "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+      "fx_test_modifier"
+      {
+        "Passive" "1"
+        "OnCreated"
+        {
+          "AttachEffect"
+          {
+            "Target" "TARGET"
+            "EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+            "EffectAttachType" "follow_overhead"
+            "EffectLifeDurationScale" "3"
+            "EffectColorA" "0 255 255" //TEAL//CYAN
+          }
+        }
+      }
+    }
   }
   
-  "barebones_empty4"
+  "jungle_player2"
   {
     // General
     //-------------------------------------------------------------------------------------------------------------
-    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-    "MaxLevel"            "0"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE| DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"            "30"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"            "rubick_empty1"
+    "AbilityTextureName"            "tiny_craggy_exterior"
+    "Modifiers"
+    {     
+      "modifier_make_deniable"
+      {
+        "Passive"               "1"
+        "Hidden"               "1"
+        "States"
+        {
+          "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+      "fx_test_modifier"
+      {
+        "Passive" "1"
+        "OnCreated"
+        {
+          "AttachEffect"
+          {
+            "Target" "TARGET"
+            "EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+            "EffectAttachType" "follow_overhead"
+            "EffectLifeDurationScale" "3"
+            "EffectColorA" "128 0 128" //PURPLE
+          }
+        }
+      }
+    }
   }
   
-  "barebones_empty5"
+  "jungle_player3"
   {
     // General
     //-------------------------------------------------------------------------------------------------------------
-    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-    "MaxLevel"            "0"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE| DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"            "30"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"            "rubick_empty1"
+    "AbilityTextureName"            "tiny_craggy_exterior"
+    "Modifiers"
+    {     
+      "modifier_make_deniable"
+      {
+        "Passive"               "1"
+        "Hidden"               "1"
+        "States"
+        {
+          "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+      "fx_test_modifier"
+      {
+        "Passive" "1"
+        "OnCreated"
+        {
+          "AttachEffect"
+          {
+            "Target" "TARGET"
+            "EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+            "EffectAttachType" "follow_overhead"
+            "EffectLifeDurationScale" "3"
+            "EffectColorA" "255 255 0" //YELLOW
+          }
+        }
+      }
+    }
   }
   
-  "barebones_empty6"
+  "jungle_player4"
   {
     // General
     //-------------------------------------------------------------------------------------------------------------
-    //"ID"              "5343"                            // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-    "MaxLevel"            "0"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE| DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"            "30"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"            "rubick_empty1"
+    "AbilityTextureName"            "tiny_craggy_exterior"
+    "Modifiers"
+    {     
+      "modifier_make_deniable"
+      {
+        "Passive"               "1"
+        "Hidden"               "1"
+        "States"
+        {
+          "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+      "fx_test_modifier"
+      {
+        "Passive" "1"
+        "OnCreated"
+        {
+          "AttachEffect"
+          {
+            "Target" "TARGET"
+            "EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+            "EffectAttachType" "follow_overhead"
+            "EffectLifeDurationScale" "3"
+            "EffectColorA" "248 128 23" //ORANGE
+          }
+        }
+      }
+    }
+  }
+  
+  "jungle_player5"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE| DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"            "30"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "tiny_craggy_exterior"
+    "Modifiers"
+    {     
+      "modifier_make_deniable"
+      {
+        "Passive"               "1"
+        "Hidden"               "1"
+        "States"
+        {
+          "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+      "fx_test_modifier"
+      {
+        "Passive" "1"
+        "OnCreated"
+        {
+          "AttachEffect"
+          {
+            "Target" "TARGET"
+            "EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+            "EffectAttachType" "follow_overhead"
+            "EffectLifeDurationScale" "3"
+            "EffectColorA" "246 96 171" //PINK
+          }
+        }
+      }
+    }
+  }
+  
+  "jungle_player6"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE| DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"            "30"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "tiny_craggy_exterior"
+    "Modifiers"
+    {     
+      "modifier_make_deniable"
+      {
+        "Passive"               "1"
+        "Hidden"               "1"
+        "States"
+        {
+          "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+      "fx_test_modifier"
+      {
+        "Passive" "1"
+        "OnCreated"
+        {
+          "AttachEffect"
+          {
+            "Target" "TARGET"
+            "EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+            "EffectAttachType" "follow_overhead"
+            "EffectLifeDurationScale" "3"
+            "EffectColorA" "132 132 130" //ORINGNALLY STALE YELLOW, CHANGED TO GREY
+          }
+        }
+      }
+    }
+  }
+  
+  "jungle_player7"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE| DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"            "30"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "tiny_craggy_exterior"
+    "Modifiers"
+    {     
+      "modifier_make_deniable"
+      {
+        "Passive"               "1"
+        "Hidden"               "1"
+        "States"
+        {
+          "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+      "fx_test_modifier"
+      {
+        "Passive" "1"
+        "OnCreated"
+        {
+          "AttachEffect"
+          {
+            "Target" "TARGET"
+            "EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+            "EffectAttachType" "follow_overhead"
+            "EffectLifeDurationScale" "3"
+            "EffectColorA" "59 185 255" //Light blue
+          }
+        }
+      }
+    }
+  }
+  
+  "jungle_player8"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE| DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"            "30"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "tiny_craggy_exterior"
+    "Modifiers"
+    {     
+      "modifier_make_deniable"
+      {
+        "Passive"               "1"
+        "Hidden"               "1"
+        "States"
+        {
+          "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+      "fx_test_modifier"
+      {
+        "Passive" "1"
+        "OnCreated"
+        {
+          "AttachEffect"
+          {
+            "Target" "TARGET"
+            "EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+            "EffectAttachType" "follow_overhead"
+            "EffectLifeDurationScale" "3"
+            "EffectColorA" "12 74 13" //Dark Green
+          }
+        }
+      }
+    }
+  }
+  
+  "jungle_player9"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE| DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"            "30"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "tiny_craggy_exterior"
+    "Modifiers"
+    {
+      "modifier_make_deniable"
+      {
+        "Passive"               "1"
+        "Hidden"               "1"
+        "States"
+        {
+          "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+         }
+      "fx_test_modifier"
+      {
+        "Passive" "1"
+        "OnCreated"
+        {
+          "AttachEffect"
+          { 
+          
+            "Target" "TARGET"
+            "EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+            "EffectAttachType" "follow_overhead"
+            "EffectLifeDurationScale" "3"
+            "EffectColorA" "88 61 0" //Brown
+          }
+        }
+      }
+    }
   }
 }
 

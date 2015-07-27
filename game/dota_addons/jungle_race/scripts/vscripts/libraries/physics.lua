@@ -1,3 +1,5 @@
+PHYSICS_VERSION = "0.91"
+
 PHYSICS_NAV_NOTHING = 0
 PHYSICS_NAV_HALT = 1
 PHYSICS_NAV_SLIDE = 2
@@ -1973,7 +1975,7 @@ function Physics:PrecalculateAABox(box)
 end
 
 
-Physics:start()
+if not Physics.timers then Physics:start() end
 
 Physics:CreateColliderProfile("blocker", 
   {

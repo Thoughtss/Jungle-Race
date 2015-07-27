@@ -41,8 +41,17 @@ function GameMode:OnEntityHurt(keys)
   --DebugPrintTable(keys)
 
   local damagebits = keys.damagebits -- This might always be 0 and therefore useless
-  local entCause = EntIndexToHScript(keys.entindex_attacker)
-  local entVictim = EntIndexToHScript(keys.entindex_killed)
+  if keys.entindex_attacker ~= nil and keys.entindex_killed ~= nil then
+    local entCause = EntIndexToHScript(keys.entindex_attacker)
+    local entVictim = EntIndexToHScript(keys.entindex_killed)
+
+    -- The ability/item used to damage, or nil if not damaged by an item/ability
+    local damagingAbility = nil
+
+    if keys.entindex_inflictor ~= nil then
+      damagingAbility = EntIndexToHScript( keys.entindex_inflictor )
+    end
+  end
 end
 
 -- An item was picked up off the ground
@@ -222,6 +231,13 @@ function GameMode:OnEntityKilled( keys )
 
   if keys.entindex_attacker ~= nil then
     killerEntity = EntIndexToHScript( keys.entindex_attacker )
+  end
+
+  -- The ability/item used to kill, or nil if not killed by an item/ability
+  local killerAbility = nil
+
+  if keys.entindex_inflictor ~= nil then
+    killerAbility = EntIndexToHScript( keys.entindex_inflictor )
   end
 
   local damagebits = keys.damagebits -- This might always be 0 and therefore useless
