@@ -95,9 +95,10 @@ function GameMode:OnHeroInGame(hero)
   hero:RemoveAbility(abil:GetAbilityName())
   hero:AddAbility("example_ability")]]
   if hero:GetUnitName() == "npc_dota_hero_lion" then
-    local ability_1 = hero:FindAbilityByName("jungle_Hero_Kill")
-    ability_1:SetLevel(1)
-    local ability_2 = hero:FindAbilityByName("jungle_invincibility_hero")
+    hero:SetMana(0)
+    local ability_1 = hero:FindAbilityByName("jungle_laser")
+    ability_1:SetLevel(0)
+    local ability_2 = hero:FindAbilityByName("jungle_invulnerability")
     ability_2:SetLevel(1)
   end
 end
@@ -117,17 +118,17 @@ function GameMode:OnGameInProgress()
     end)]]
 
   local spawner_1 = Entities:FindByName ( nil, "spawner_1")
-  local maxNumPlayers = 10 
+  local maxNumPlayers = 10
   for nPlayerID = 0, maxNumPlayers-1 do
   
     if PlayerResource:GetPlayer(nPlayerID) ~= nil then
-      --local name = chooseRandUnit("")
-      local creature = CreateUnitByName("npc_dota_neutral_alpha_wolf" , spawner_1:GetAbsOrigin() + RandomVector( RandomFloat( 0, 200 ) ), true, PlayerResource:GetPlayer(nPlayerID), PlayerResource:GetPlayer(nPlayerID), nPlayerID)
+      local unitName = getRandomUnit()
+      local creature = CreateUnitByName(unitName, spawner_1:GetAbsOrigin() + RandomVector( RandomFloat( 0, 200 ) ), true, PlayerResource:GetPlayer(nPlayerID), PlayerResource:GetPlayer(nPlayerID), nPlayerID)
       creature:SetControllableByPlayer(nPlayerID, true)
-      print(nPlayerID)
       local abilityString = "jungle_player" .. nPlayerID
       creature:AddAbility(abilityString)
       creature:FindAbilityByName(abilityString):SetLevel(1)
+      SendToConsole("dota_camera_set_lookatpos -3520 448")
     end
   end
 end
@@ -162,6 +163,5 @@ function GameMode:ExampleConsoleCommand()
       PlayerResource:ReplaceHeroWith(playerID, "npc_dota_hero_viper", 1000, 1000)
     end
   end
-
   print( '*********************************************' )
 end

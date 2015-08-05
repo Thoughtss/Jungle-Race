@@ -3,7 +3,8 @@
 "DOTAAbilities"
 {
   "Version"   "1"
-  
+
+  // Barebones example ability
   "example_ability"
   {
     "ID"              "1852"
@@ -187,8 +188,8 @@
   {
     "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"            "rubick_empty1"
-    "MaxLevel"                      "1"
+    "AbilityTextureName"  "rubick_empty1"
+    "MaxLevel"            "1"
     
     "Modifiers"
     {
@@ -207,6 +208,7 @@
     }
   }
   
+  // Barebones empty ability 1
   "barebones_empty1"
   {
     // General
@@ -218,7 +220,8 @@
     "AbilityTextureName"            "rubick_empty1"
   }
   
-  "jungle_Hero_Kill"
+  // Jungle Race one hit laser skill
+  "jungle_laser"
   {
     // General
     //-------------------------------------------------------------------------------------------------------------
@@ -230,7 +233,7 @@
     "MaxLevel"            "1"
     // Casting
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "5000"
+    "AbilityCastRange"        "50000"
     "AbilityCastPoint"        "0.01"
 
     // Time   
@@ -261,7 +264,8 @@
     }
   }
 
-  "jungle_invincibility_hero"
+  // Jungle Race Invulnerability for lions
+  "jungle_invulnerability"
   {
     "BaseClass"           "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -288,38 +292,39 @@
   {
     // General
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
     "MaxLevel"            "0"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"            "tiny_craggy_exterior"
+    "AbilityTextureName"  "rubick_empty1"
   }
   
   "jungle_empty4"
   {
     // General
     //-------------------------------------------------------------------------------------------------------------
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
     "MaxLevel"            "0"
     "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"            "tiny_craggy_exterior"
+    "AbilityTextureName"  "rubick_empty1"
   }
 
 
+  // Jungle Race Player Abilities for identification
   "jungle_player0"
   {
     // General
     //-------------------------------------------------------------------------------------------------------------
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE| DOTA_ABILITY_BEHAVIOR_PASSIVE"
-    "MaxLevel"            "30"
-    "BaseClass"           "ability_datadriven"
-    "AbilityTextureName"            "tiny_craggy_exterior"
+    "MaxLevel"              "30"
+    "BaseClass"             "ability_datadriven"
+    "AbilityTextureName"    "rubick_empty1"
     
     "Modifiers"
     {     
       "modifier_make_deniable"
       {
         "Passive"               "1"
-        "Hidden"               "1"
+        "IsHidden"                "1"
         "States"
         {
           "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED"
@@ -657,14 +662,13 @@
           "MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED"
         }
       }
-         }
       "fx_test_modifier"
       {
         "Passive" "1"
         "OnCreated"
         {
           "AttachEffect"
-          { 
+          {
           
             "Target" "TARGET"
             "EffectName" "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
@@ -675,6 +679,882 @@
         }
       }
     }
+  }
+
+
+  // Jungle Race Unit Abilities
+  //=================================================================================================================
+  // Viper: Viper Strike
+  //=================================================================================================================
+  "Venom_Strike"
+  {
+    "Baseclass"             "viper_viper_strike"
+    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"       "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetFlags"      "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "AbilityUnitDamageType"       "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"      "1" 
+    
+    "AbilityCastRange" "800"
+    "AbilityCastPoint" "0.3 "
+    "AbilityCooldown" "5.0 "
+    "AbilityManaCost" "0 "
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type" "FIELD_FLOAT"
+        "duration" "12.1 "
+      }
+      "02"
+      {
+        "var_type" "FIELD_INTEGER"
+        "damage" "0 "
+      }
+      "03"
+      {
+        "var_type" "FIELD_INTEGER"
+        "bonus_movement_speed" "-60 "
+      }
+      "04"
+      {
+        "var_type" "FIELD_INTEGER"
+        "bonus_attack_speed" "-60 "
+      }
+      "05"
+      {
+        "var_type" "FIELD_INTEGER"
+        "mana_cost_scepter" "0 "
+      }
+      "06"
+      {
+        "var_type" "FIELD_FLOAT"
+        "cooldown_scepter" "5.0"
+      }
+      "07"
+      {
+        "var_type" "FIELD_INTEGER"
+        "cast_range_scepter" "800"
+      }
+      "08"
+      {
+        "var_type" "FIELD_INTEGER"
+        "projectile_speed" "1200"
+      }
+    }
+  }
+  
+  //=================================================================================================================
+  // Ability: Antimage Blink
+  //=================================================================================================================
+  "Cheat"
+  {
+    "Baseclass"         "antimage_blink"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+    "MaxLevel"            "1" 
+    
+    "AbilityCastPoint"        "0.0"
+    "AbilityCooldown"       "10.0 "
+    "AbilityManaCost"       "10 "
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"    "FIELD_INTEGER"
+        "blink_range"   "999999"
+      }
+
+      "02"
+      {
+        "var_type"    "FIELD_INTEGER"
+        "min_blink_range"  "0"
+      }
+    }
+  }
+  
+  //=================================================================================================================
+   // Invulnerability
+   //=================================================================================================================
+  "Invulnerable"
+  {
+    "BaseClass"                     "ability_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityTextureName"            "disruptor_glimpse"
+
+    // Modifiers
+    //-------------------------------------------------------------------------------------------------------------
+    "Modifiers"
+    {
+      "Invulnerable"
+      {
+        "Passive"                       "1"
+        "States"
+        {
+          "MODIFIER_STATE_INVULNERABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+    }
+  }
+  
+  //=================================================================================================================
+  // Shadow Shaman: Voodoo
+  //=================================================================================================================
+  "Polymorph"
+  {
+    "Baseclass" "shadow_shaman_voodoo"
+    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"       "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "MaxLevel"      "1"
+    
+    "AbilityCastRange"          "800"
+    "AbilityCastPoint"          "0"
+    "AbilityCooldown"           "1.0"
+    "AbilityManaCost"           "1"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type" "FIELD_INTEGER"
+        "movespeed" "100"
+      }
+      "02"
+      {
+        "var_type" "FIELD_FLOAT"
+        "duration" "12.0 "
+      }
+    }
+  }
+  
+  //=================================================================================================================
+  // Doom Bringer: Devour
+  //=================================================================================================================
+  "Devour"
+  {
+    "Baseclass"           "doom_bringer_devour"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_CUSTOM"
+    "AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"  
+    "MaxLevel"      "1"
+    
+    "AbilityCastRange"        "175 "
+    "AbilityCooldown"       "0.0 "
+    "AbilityManaCost"       "0"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "bonus_gold"      "0 "
+      }
+      "02"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "health_per_second"   "20 "
+      }
+    }
+  }
+  
+  //=================================================================================================================
+  // Naga Siren: Ensnare
+  //=================================================================================================================
+  "Ensnare"
+  {
+    "Baseclass" "naga_siren_ensnare"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "MaxLevel"      "1"
+    
+    "AbilityCastPoint"        "0.65"
+    "AbilityCooldown"       "8.0 "
+    "AbilityManaCost"       "0 "
+    "AbilityCastRange"        "700"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"          "FIELD_FLOAT"
+        "duration"          "6.0 "
+      }
+      "02"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "net_speed"         "1500 "
+      }
+      "03"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "fake_ensnare_distance"   "900 "  
+      }
+    }
+  } 
+  
+  //=================================================================================================================
+  // Enchantress: Untouchable
+  //=================================================================================================================
+  "Untouchable"
+  {
+    "Baseclass"           "enchantress_untouchable"
+    "AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityDuration"         "12"
+    "MaxLevel"              "1"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type" "FIELD_INTEGER"
+        "slow_attack_speed" "-120 "
+      }
+      "02"
+      {
+        "var_type" "FIELD_INTEGER"
+        "slow_duration" "12"
+      }
+    }
+  }
+  
+  //=================================================================================================================
+  // Razor: Unstable Current
+  //=================================================================================================================
+  "Unstable_Current"
+  {
+    "Baseclass"           "razor_unstable_current"
+    "AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"      "1"
+    
+    "AbilityDamage"         "130"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type" "FIELD_INTEGER"
+        "movement_speed_pct" "75"
+      }
+      "02"
+      {
+        "var_type" "FIELD_FLOAT"
+        "slow_duration" "5.0"
+      }
+      "03"
+      {
+        "var_type" "FIELD_FLOAT"
+        "pause_duration" "0.3"
+      }
+      "04"
+      {
+        "var_type" "FIELD_FLOAT"
+        "purge_frequency" "1"
+      }
+      "05"
+      {
+        "var_type" "FIELD_INTEGER"
+        "slow_amount" "-100"
+      }
+    }
+  }
+  //=================================================================================================================
+  // Kunkka: Tidebringer
+  //=================================================================================================================
+  "Tidebringer"
+  {
+    "Baseclass"           "kunkka_tidebringer"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
+    "MaxLevel"      "1" 
+    
+    "AbilityCooldown"       "2.0 "
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "radius"          "1000 "
+      }
+      "02"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "damage_bonus"        "0"
+      }
+    }
+    }
+  //=================================================================================================================
+  // Ability: Juggernaut Blade Dance
+  //=================================================================================================================
+  "Critical_Strike"
+  {
+    "Baseclass"           "juggernaut_blade_dance"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"      "1"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "blade_dance_crit_mult"   "200"
+      }
+      "02"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "blade_dance_crit_chance" "50"
+      }
+    }
+  }
+  //=================================================================================================================
+  // Brewmaster Earth: Pulverize
+  //=================================================================================================================
+  "Pulverize"
+  {
+    "Baseclass"           "brewmaster_earth_pulverize"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"      "1"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "damage_inner"        "250"
+      }
+      "02"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "radius_inner"        "250 "
+      }
+      "03"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "damage_outer"        "125 "
+      }
+      "04"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "radius_outer"        "350 "
+      }
+      "05"
+      {
+        "var_type"          "FIELD_INTEGER"
+        "chance"          "50 "
+      }
+    }
+  } 
+
+  //=================================================================================================================
+  // Queen of Pain: Shadow Strike
+  //=================================================================================================================
+  "Snipe"
+  {
+    "Baseclass"           "sniper_assassinate"
+    "AbilityBehavior"         "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"              "1"
+    
+    "AbilityCastRange"        "5000 "
+    "AbilityCastRangeBuffer"    "600"
+    "AbilityCastPoint"        "0.15 "
+    "AbilityCooldown"         "10.0 "
+    "AbilityDamage"         "100 "
+    "AbilityManaCost"         "0 "
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type" "FIELD_INTEGER"
+        "projectile_speed" "2000 "
+      }
+      "02"
+      {
+        "var_type" "FIELD_INTEGER"
+        "tooltip_range" "5000 "
+      }
+    }
+  }
+  
+  //=================================================================================================================
+  // Ability: Vengefulspirit Nether Swap
+  //=================================================================================================================
+  "Swap"
+  {
+    "BaseClass"               "vengefulspirit_nether_swap"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_BASIC"
+    "MaxLevel"      "1"
+    
+    "AbilityCastRange"            "600"
+    "AbilityCastPoint"            "0.001"
+    "AbilityCooldown"             "2.0"
+    "AbilityManaCost"             "0"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type" "FIELD_INTEGER"
+        "tooltip_range" "600"
+      }
+      "02"
+      {
+        "var_type" "FIELD_FLOAT"
+        "nether_swap_cooldown_scepter" "2.0"
+      }
+    }
+  }
+  
+  //=================================================================================================================
+  // Doom Bringer: Doom
+  //=================================================================================================================
+  "Doom"
+  {
+    "Baseclass"             "doom_bringer_doom"
+    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"       "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetFlags"      "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+    "AbilityUnitDamageType"       "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"                "1"
+    
+    "AbilityCastPoint" "0.3"
+    "AbilityCastRange" "650 "
+    "AbilityCooldown" "2.0"
+    "AbilityManaCost" "0 "
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type" "FIELD_FLOAT"
+        "duration" "10.0"
+      }
+      "02"
+      {
+        "var_type" "FIELD_INTEGER"
+        "damage" "5"
+      }
+      "03"
+      {
+        "var_type" "FIELD_FLOAT"
+        "duration_scepter" "10.0 "
+      }
+      "04"
+      {
+        "var_type" "FIELD_INTEGER"
+        "damage_scepter" "5 "
+      }
+      "05"
+      {
+        "var_type" "FIELD_INTEGER"
+        "deniable_pct" "25"
+      }
+    }
+  }
+  //=================================================================================================================
+  // Obsidian Destroyer: Astral Imprisonment
+  //=================================================================================================================
+  "Vanish"
+  {
+    "Baseclass"             "obsidian_destroyer_astral_imprisonment"
+    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+    "AbilityUnitTargetTeam"       "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"       "DOTA_UNIT_TARGET_ALL"
+    "AbilityUnitTargetFlags"      "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO | DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+    "MaxLevel"      "1"
+    
+    "AbilityDuration" "10.0"
+    "AbilityCooldown" "2.0"
+    "AbilityCastRange" "650"
+    "AbilityCastPoint" "0.25"
+    "AbilityManaCost" "1"
+    "AbilityModifierSupportValue" "0.5" // applies multiple modifiers
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type" "FIELD_INTEGER"
+        "int_steal" "0 0 0 0"
+      }
+      "02"
+      {
+        "var_type" "FIELD_FLOAT"
+        "steal_duration" "0.0 0.0 0.0 0.0"
+      }
+      "03"
+      {
+        "var_type" "FIELD_FLOAT"
+        "prison_duration" "1.0 2.0 3.0 4.0"
+      }
+    }
+  }
+  //=================================================================================================================
+  // Bane: Nightmare
+  //=================================================================================================================
+  "Sleep"
+  { 
+    "Baseclass"               "bane_nightmare"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_HP_REMOVAL"
+    "MaxLevel"      "1"
+    
+    "AbilityCastRange"            "500"
+    "AbilityCastPoint"            "0.5"
+    "AbilityCooldown"             "5.0"
+    "AbilityDuration" "           8.0"
+    "AbilityDamage"             "0"
+    "AbilityManaCost"             "0 "
+    "AbilityModifierSupportValue" "0.5" // Applies two modifiers
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type" "FIELD_FLOAT"
+        "nightmare_dot_interval" "1.0"
+      }
+      "02"
+      {
+        "var_type" "FIELD_FLOAT"
+        "nightmare_invuln_time" "1.0"
+      }
+      "03"
+      {
+        "var_type" "FIELD_FLOAT"
+        "duration" "8.0"
+      }
+      "04"
+      {
+        "var_type" "FIELD_FLOAT"
+        "animation_rate" "0.22"
+      }
+      "05"
+      {
+        "var_type" "FIELD_INTEGER"
+        "cast_range_tooltip" "800"
+      }
+    }
+  }
+  
+  //=================================================================================================================
+  // Riki: Permanent Invisibility
+  //=================================================================================================================
+  "Sneakyness"
+  {
+    "BaseClass"           "riki_permanent_invisibility"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    
+    "Maxlevel"            "1"
+    "Modifiers"
+    {
+    }
+  }
+    
+  //=================================================================================================================
+  // Pugna: Decrepify
+  //=================================================================================================================
+  "Banish"
+  {
+    "Baseclass"             "pugna_decrepify"
+    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+    "AbilityUnitTargetTeam"       "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"       "DOTA_UNIT_TARGET_CUSTOM"
+    "MaxLevel"                "1"
+    
+    "AbilityCastRange"          "800"
+    "AbilityCastPoint"          "0.0"
+    "AbilityCooldown"           "1.0"
+    "AbilityDuration"           "8.0"
+    "AbilityManaCost"           "0"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+      "var_type" "FIELD_INTEGER"
+      "bonus_spell_damage_pct_allies" "-40"
+      }
+      "02"
+      {
+      "var_type" "FIELD_INTEGER"
+      "bonus_spell_damage_pct" "-40"
+      }
+      "03"
+      {
+      "var_type" "FIELD_INTEGER"
+      "bonus_movement_speed" "-40 "
+      }
+      "04"
+      {
+      "var_type" "FIELD_FLOAT"
+      "tooltip_duration" "8.0"
+      }
+    }
+  }
+  
+  //=================================================================================================================
+  // Brewmaster Storm: Cyclone
+  //=================================================================================================================
+  "Cyclone"
+  {
+    "Baseclass"               "brewmaster_storm_cyclone"
+    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+    "MaxLevel"   "1"
+    
+    "AbilityCastRange"            "700 "
+    "AbilityCooldown"             "5.0"
+    "AbilityCastPoint"            "0.0"
+    "AbilityManaCost"             "1 "
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type" "FIELD_FLOAT"
+        "duration_hero" "12.0"
+      }
+      "02"
+      {
+        "var_type" "FIELD_FLOAT"
+        "duration_unit" "12.0 "
+      }
+    }
+  }
+   //=================================================================================================================
+  // Ability: Crystal Maiden's Frostbite
+  //=================================================================================================================
+  "Freeze"
+  {
+    "Baseclass"             "crystal_maiden_frostbite"
+    "AbilityType"             "DOTA_ABILITY_TYPE_BASIC"
+    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"       "DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetType"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"       "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"      "1"
+     
+    "AbilityCastRange" "800"
+    "AbilityCastPoint" "0.7 "
+    "AbilityCooldown" "4.0"
+    "AbilityDamage" "0 "
+    "AbilityManaCost" "0 "
+    
+    "AbilityModifierSupportValue" "0.5" // Applies multiple modifiers
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type" "FIELD_FLOAT"
+        "duration" "8.0"
+      }
+      "02"
+      {
+        "var_type" "FIELD_FLOAT"
+        "creep_duration" "8.0"
+      }
+    }
+  }
+  //=================================================================================================================
+  // ABILITY : Immolation
+  //=================================================================================================================
+  "Immolation"
+  {
+    "BaseClass"           "ability_datadriven"
+    //"AbilityTextureName"      "crystal_maiden_brilliance_aura"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"           "ability_datadriven"
+    "Modifiers"
+    {
+      "damage_aura"
+      {
+        "Passive"               "1"
+        "IsHidden"        "1"
+        "IsDebuff"        "1"
+        "Aura"          "damage_effect"
+        "Aura_Radius"     "1000"
+        "Aura_Teams"      "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "Aura_Types"      "DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_HERO"
+        "Aura_ApplyToCaster"  "0"
+      }     
+      "damage_effect"
+      {
+        "IsDebuff"    "0"
+        "IsHidden"        "1"
+        //"EffectName"  "particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+        "ThinkInterval" "1"
+        "OnIntervalThink"
+        {
+          "Damage"
+          {
+            "Type"    "DAMAGE_TYPE_MAGICAL"
+            "Damage"  "5"
+            "Target"  "TARGET"
+          }
+        }
+      }
+    }
+    
+  }
+  
+  //=================================================================================================================
+  // ABILITY : SELF DEGEN
+  //=================================================================================================================
+  "Soul_Fire"
+  {
+    "BaseClass"           "ability_datadriven"
+    //"AbilityTextureName"      "crystal_maiden_brilliance_aura"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"           "ability_datadriven"
+    "Modifiers"
+    {
+      "damage_aura"
+      {
+        "Passive"               "1"
+        "IsHidden"        "1"
+        "IsDebuff"        "1"
+        "Aura"          "damage_effect"
+        "Aura_Radius"     "1"
+        "Aura_Teams"      "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "Aura_Types"      "DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_HERO"
+        "Aura_ApplyToCaster"  "1"
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "-25"
+        }
+      }     
+      "damage_effect"
+      {
+        "IsDebuff"    "0"
+        "IsHidden"    "1"
+        //"EffectName"  "particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+        "ThinkInterval" "1"
+        "OnIntervalThink"
+        {
+          "Damage"
+          {
+            "Type"    "DAMAGE_TYPE_MAGICAL"
+            "Damage"  "5"
+            "Target"  "TARGET"
+          }
+        }
+      }
+    }
+    
+  }
+  
+  //=================================================================================================================
+  // ABILITY : SLOW AURA
+  //=================================================================================================================
+  "Slow_Aura"
+  {
+    "BaseClass"           "ability_datadriven"
+    //"AbilityTextureName"      "crystal_maiden_brilliance_aura"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"           "ability_datadriven"
+    "Modifiers"
+    {
+      "slow_aura"
+      {
+        "Passive"               "1"
+        "IsHidden"        "0"
+        "IsDebuff"        "1"
+        "Aura"          "slow_aura"
+        "Aura_Radius"     "99999"
+        "Aura_Teams"      "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "Aura_Types"      "DOTA_UNIT_TARGET_CREEP"
+        "Aura_ApplyToCaster"  "1"
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "-25"
+        }
+      }
+      
+      //"slow_effect" //ADD MORE EFFECTS
+      //{
+        
+        
+      //}
+    }
+    
+  }
+  //=================================================================================================================
+  // ABILITY : SPEED AURA
+  //=================================================================================================================
+  "Speed_Aura"
+  {
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"      "crystal_maiden_brilliance_aura"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"           "ability_datadriven"
+    "Modifiers"
+    {
+      "speed_aura"
+      {
+        "Passive"               "1"
+        "IsHidden"        "0"
+        "IsDebuff"        "1"
+        "Aura"          "speed_aura"
+        "Aura_Radius"     "99999"
+        "Aura_Teams"      "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "Aura_Types"      "DOTA_UNIT_TARGET_CREEP"
+        "Aura_ApplyToCaster"  "1"
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "25"
+        }
+      }
+      
+      //"slow_effect" //ADD MORE EFFECTS
+      //{
+        
+        
+      //}
+    }
+    
+  }
+  //=================================================================================================================
+  // ABILITY : MANA AURA
+  //=================================================================================================================
+  "Mana_Aura"
+  {
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"      "crystal_maiden_brilliance_aura"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"           "ability_datadriven"
+    "Modifiers"
+    {
+      "mana_aura"
+      {
+        "Passive"               "1"
+        "IsHidden"        "0"
+        "IsDebuff"        "1"
+        "Aura"          "mana_aura"
+        "Aura_Radius"     "99999"
+        "Aura_Teams"      "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "Aura_Types"      "DOTA_UNIT_TARGET_CREEP"
+        "Aura_ApplyToCaster"  "1"
+        "Properties"
+        {
+          "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"     "2"
+        }
+      }
+      
+      //"slow_effect" //ADD MORE EFFECTS
+      //{
+        
+        
+      //}
+    }
+    
   }
 }
 

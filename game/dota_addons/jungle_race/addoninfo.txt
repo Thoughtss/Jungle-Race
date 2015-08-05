@@ -1,9 +1,9 @@
 "AddonInfo"
 {
   "TeamCount" "10"
-  "maps"      "template_map"
+  "maps"      "Jungle Race"
   "IsPlayable"  "1"
-  "template_map"
+  "Jungle Race"
   {
           "MaxPlayers"                    "10"
   }

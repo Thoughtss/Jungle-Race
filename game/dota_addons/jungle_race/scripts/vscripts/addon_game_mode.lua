@@ -40,6 +40,53 @@ function Precache( context )
   -- Custom units from npc_units_custom.txt can also have all of their abilities and precache{} blocks precached in this way
   PrecacheUnitByNameSync("npc_dota_hero_ancient_apparition", context)
   PrecacheUnitByNameSync("npc_dota_hero_enigma", context)
+
+
+  -- JUNGLE RACE PRECACHE
+  --PrecacheModel("models/heroes/treant_protector/treant_protector.mdl", context )
+  PrecacheResource( "model_folder", "models/courier/turtle_rider/", context )
+  --PrecacheResource( "model_folder", "models/items/courier", context )
+  --PrecacheResource( "model_folder", "models/courier", context )
+  PrecacheResource( "model_folder", "models/creeps/neutral_creeps", context )
+  --PrecacheResource( "soundfile", "*.vsndevts", context )
+  --PrecacheResource( "particle", "*.vpcf", context )
+  --PrecacheResource( "particle_folder", "particles", context )
+  PrecacheResource( "particle_folder", "particles/holdout_lina", context )
+  PrecacheResource( "model_folder", "models/items/warlock/golem/doom_of_ithogoaki", context )
+  PrecacheResource( "model_folder", "models/items/hex/sheep_hex/", context )
+  --PrecacheResource( "soundfile_folder", "sound", context )
+  PrecacheUnitByNameSync("npc_dota_hero_shadow_shaman", context)
+  PrecacheUnitByNameSync("npc_dota_hero_obsidian_destroyer", context)
+  PrecacheUnitByNameSync("npc_dota_hero_bane", context)
+  PrecacheUnitByNameSync("npc_dota_hero_pugna", context)
+  PrecacheUnitByNameSync("npc_dota_hero_naga_siren", context)
+  PrecacheUnitByNameSync("npc_dota_hero_phantom_assassin", context)
+  PrecacheUnitByNameSync("npc_dota_hero_sniper", context)
+  PrecacheUnitByNameSync("npc_dota_hero_riki", context)
+  PrecacheUnitByNameSync("npc_dota_hero_vengefullspirit", context)
+  PrecacheUnitByNameSync("npc_dota_hero_gyrocopter", context)
+  PrecacheUnitByNameSync("npc_dota_hero_beastmaster", context)
+  PrecacheUnitByNameSync("npc_dota_hero_crystal_maiden", context)
+  PrecacheUnitByNameSync("npc_dota_hero_elder_titan", context)
+  PrecacheUnitByNameSync("npc_dota_hero_enchantress", context)
+  PrecacheUnitByNameSync("npc_dota_hero_razor", context)
+  PrecacheUnitByNameSync("npc_dota_hero_kunkka", context)
+  PrecacheUnitByNameSync("npc_dota_hero_lion", context)
+  PrecacheUnitByNameSync("npc_dota_hero_doom_bringer", context)
+  PrecacheUnitByNameSync("npc_dota_hero_viper", context)
+  PrecacheUnitByNameSync("npc_dota_hero_visage", context)
+  PrecacheUnitByNameSync("npc_dota_hero_brewmaster", context)
+  PrecacheUnitByNameSync("npc_dota_hero_lich", context)
+  PrecacheResource( "particle", "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", context )
+  --PrecacheUnitByNameSync("npc_dota_hero_warlock", context)
+  --PrecacheResource("models/heroes/undying/undying_minion.vmdl", "*.vmdl", context )
+  --[[
+    Precache things we know we'll use.  Possible file types include (but not limited to):
+      PrecacheResource( "model", "*.vmdl", context )
+      PrecacheResource( "soundfile", "*.vsndevts", context )
+      PrecacheResource( "particle", "*.vpcf", context )
+      PrecacheResource( "particle_folder", "particles/folder", context )
+  ]]
 end
 
 -- Create the game mode when we activate

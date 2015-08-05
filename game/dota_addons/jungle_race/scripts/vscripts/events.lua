@@ -1,3 +1,4 @@
+require('completelap')
 -- This file contains all barebones-registered events and has already set up the passed-in parameters for your use.
 -- Do not remove the GameMode:_Function calls in these events as it will mess with the internal barebones systems.
 
@@ -243,6 +244,30 @@ function GameMode:OnEntityKilled( keys )
   local damagebits = keys.damagebits -- This might always be 0 and therefore useless
 
   -- Put code here to handle when an entity gets killed
+  local yValue = killedUnit:GetAbsOrigin()[2]
+  local nPlayerID = getPlayerOwner(killedUnit)
+  local prevUnit = killedUnit:GetUnitName()
+  if nPlayerID ~= nil then
+    if yValue >= -768 then
+      local spawner_1 = Entities:FindByName ( nil, "spawner_1")
+      local unitName = getRandomUnit(prevUnit)
+      local creature = CreateUnitByName(unitName , spawner_1:GetAbsOrigin() + RandomVector( RandomFloat( 0, 200 ) ), true, PlayerResource:GetPlayer(nPlayerID), PlayerResource:GetPlayer(nPlayerID), nPlayerID)
+      creature:SetControllableByPlayer(nPlayerID, true)
+      local abilityString = "jungle_player" .. nPlayerID
+      creature:AddAbility(abilityString)
+      creature:FindAbilityByName(abilityString):SetLevel(1)
+      SendToConsole("dota_camera_set_lookatpos -3520 448")
+    else
+      local spawner_2 = Entities:FindByName ( nil, "spawner_2")
+      local unitName = getRandomUnit(prevUnit)
+      local creature = CreateUnitByName(unitName, spawner_2:GetAbsOrigin() + RandomVector( RandomFloat( 0, 200 ) ), true, PlayerResource:GetPlayer(nPlayerID), PlayerResource:GetPlayer(nPlayerID), nPlayerID)
+      creature:SetControllableByPlayer(nPlayerID, true)
+      local abilityString = "jungle_player" .. nPlayerID
+      creature:AddAbility(abilityString)
+      creature:FindAbilityByName(abilityString):SetLevel(1)
+      SendToConsole("dota_camera_set_lookatpos -256 -1856")
+    end
+  end
 end
 
 
